@@ -1,5 +1,9 @@
 # twint-server
-Scrapes Twitter using Twint and returns a JSON response
+Open Source Intelligence Tool that scrapes Twitter using Twint and returns a JSON response via FastAPI.
+
+## Features
+- [x] get last 20 tweets by (username)
+- [ ] extend API to support more [Twint features](https://github.com/twintproject/twint/wiki/Basic-usage)
 
 ## Tools
 - FastAPI
