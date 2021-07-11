@@ -1,15 +1,18 @@
-from typing import Optional
+import twint
 
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/user/{user_id}")
+def get_tweets(user_id: str):
+    tweets = []
+    c = twint.Config()
+    c.Username = user_id
+    c.Limit = 20
+    c.Store_object = True
+    c.Store_object_tweets_list = tweets
+    c.Hide_output = True
+    twint.run.Search(c)
+    return tweets
