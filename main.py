@@ -1,3 +1,5 @@
+"""Scrapes Twitter using Twint and returns a JSON response via FastAPI"""
+
 import twint
 
 from fastapi import FastAPI
@@ -7,12 +9,13 @@ app = FastAPI()
 
 @app.get("/user/{user_id}")
 def get_tweets(user_id: str):
+    """Takes a username and returns a list of their last 20 tweets"""
     tweets = []
-    c = twint.Config()
-    c.Username = user_id
-    c.Limit = 20
-    c.Store_object = True
-    c.Store_object_tweets_list = tweets
-    c.Hide_output = True
-    twint.run.Search(c)
+    config = twint.Config()
+    config.Username = user_id
+    config.Limit = 20
+    config.Store_object = True
+    config.Store_object_tweets_list = tweets
+    config.Hide_output = True
+    twint.run.Search(config)
     return tweets
