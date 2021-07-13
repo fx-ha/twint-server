@@ -9,11 +9,11 @@ app = FastAPI()
 
 @app.get("/user/{user_id}")
 def get_tweets(user_id: str):
-    """Takes a username and returns a list of their last 20 tweets"""
+    """Takes a username and returns a list of their last 100 tweets"""
     tweets = []
     config = twint.Config()
     config.Username = user_id
-    config.Limit = 20
+    config.Limit = 100
     config.Store_object = True
     config.Store_object_tweets_list = tweets
     config.Hide_output = True
